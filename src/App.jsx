@@ -126,7 +126,7 @@ import { useState,useEffect } from "react";
             <input type="number" defaultValue="4" min="4" max="6" className="border-2 border-black text-center min-w-10" onChange={(e) => handleSizeChange(e)}/>
         </div>
         {
-          isSizeExceed && <h1 className="text-red-500 absolute top-36">Grid size should be between 4 - 6</h1>
+          isSizeExceed && <h1 className="text-red-500">Grid size should be between 4 - 6</h1>
         }
         </div>
         <section className="flex w-fit p-10 mt-4 max-sm:mt-4 h-[76vh] justify-center items-center flex-col gap-3 ">
