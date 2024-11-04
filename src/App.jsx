@@ -10,6 +10,7 @@ import { useState,useEffect } from "react";
   const [isProcessing, setIsProcessing] = useState(false);
   const [currOpenBoxes, setCurrOpenBoxes] = useState(0);
   const [isGameOver, setIsGameOver] = useState(false);
+  const [isSizeExceed, setIsSizeExceed] = useState(false)
 
   const generateGrid = () => {
     let map =[];
@@ -43,8 +44,14 @@ import { useState,useEffect } from "react";
   }
 
   const handleSizeChange = (e) => {
+    if(e.target.value < 4 || e.target.value > 6){
+        setIsSizeExceed(true);
+        return;
+    }
+    setIsSizeExceed(false);
     setGridSize(e.target.value);
   }
+
 
   const handleClick = (row, col) => {
     let tempArray = [...gridMap];
@@ -116,8 +123,11 @@ import { useState,useEffect } from "react";
           </h1>
           <div>
             <label className="text-xl">set the size of the grid : </label>
-            <input type="number" defaultValue="4" min="4" max="6" className="border-2 border-black text-center min-w-10" onChange={(e) => handleSizeChange(e)}  onKeyDown={(e) => e.preventDefault()}  />
+            <input type="number" defaultValue="4" min="4" max="6" className="border-2 border-black text-center min-w-10" onChange={(e) => handleSizeChange(e)}/>
         </div>
+        {
+          isSizeExceed && <h1 className="text-red-500">Grid size should be between 4 - 6</h1>
+        }
         </div>
         <section className="flex w-fit p-10 mt-4 max-sm:mt-4 h-[76vh] justify-center items-center flex-col gap-3 ">
         <div className={`grid grid-cols-${gridSize} gap-3  bg-blue-500 p-8 max-sm:p-5 `}>
